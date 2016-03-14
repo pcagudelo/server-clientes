@@ -12,54 +12,45 @@
         <div class="aplicacion" ng-controller="ControlPanel as panel">
         
                 <div class="cabecera">
-                    <h1>Tus Clientes </h1>
-                    <a href="" ng-click="panel.tab=1)"><img src="images/ic_assignment_late_black_36dp.png" /></a>
-                    <a href="" ng-click="panel.tab=2"><img src=images/ic_assignment_ind_black_36dp.png /></a>
-                    <a href="" ng-click="panel.tab=3"><img src="images/ic_assignment_turned_in_black_36dp.png" /></a>
-                    <a href="" ng-click="panel.tab=4"><img src="images/ic_find_in_page_black_36dp.png" /></a>
-                     {{panel.tab}}
-                                
-                </div>
-               
-                                     
-                     <div class=""  ng-controller="ClientesLista as lista" ng-show="panel.tab === 1">
-                          <div class="cliente" ng-repeat="cliente in lista.clientes">
-                            {{cliente.nombre}} - {{cliente.apellido}}
-                             
-                         </div>
-                     </div >
-                     <div ng-show="panel.tab === 2">
-                         <h4>Terminaciones de susbs</h4>
-                     </div>
-                     
-                     <div ng-show="panel.tab === 3">
-                         <h4>Creacion de usuarios</h4>
-                     </div>
-                     
-                     <div ng-show="panel.tab === 4">
-                     <h4>Busqueda de usuarios</h4>
-                     </div>
+                    <h1>Tus Clientes {{panel.tab}} </h1>
+                    <a href="" ng-click="panel.SelectTab(1)"><img ng-src="{{panel.imagenes.alerta}}" /></a>
+                    <a href="" ng-click="panel.SelectTab(2)"><img src=images/ic_assignment_black_36dp.png /></a>
+                    <a href="" ng-click="panel.SelectTab(3)"><img src="images/ic_assignment_ind_black_36dp.png" /></a>
+                    <a href="" ng-click="panel.SelectTab(4)"><img src="images/ic_find_in_page_black_36dp.png" /></a>
                     
-
-             
-
-
-                <div class="pie">
-               <input type="text" placeholder="Esbribe el Nombre"name="nombre_cliente"  ng-model="nuevo.cliente.nombre"/>
-                                <br/>
-                <input type="text" placeholder="Escribe el apellido" name="apellido_cliente" ng-model="nuevo.cliente.apellido"/>
-                                <br/>
-                <button>Guardar</button>
-                
+                 </div>
                
+                 <div class=""  ng-controller="ClientesLista as lista" ng-show="panel.tab === 1">
+                     
+                         <div class="cliente" ng-repeat="cliente in lista.clientes">
+                         {{cliente.nombre}}-{{cliente.apellido}}
+                         </div> 
                 </div>
-
-        </div>    
-
-
-
-<script src="javascripts/angular.min.js"></script>
+                         
+                 <div ng-show="panel.tab === 2"><h4>Terminaciones de susbs</h4> </div>
+                     
+                     <div ng-show="panel.tab === 3" >
+                         
+                         <h4>Creacion de usuarios</h4>
+                          
+                          <form name="nuevouser" ng-controller="NuevoCliente as nCli">
+                              <div></div>
+                             
+                             
+                              <a>Nombre:{{nCli.nuevocliente.nombre}}</a><br/>
+                              <a>apellido:{{nCli.nuevo.cliente.apellido}}</a>
+                                <br/>                  
+                             <input type="text" placeholder="Esbribe el Nombre" name="nombre_cliente"  ng-model="nCli.nuevocliente.nombre"/>
+                             <input type="text" placeholder="Escribe el apellido" name="apellido_cliente" ng-model="nCli.nuevo.cliente.apellido"/><br/>
+                             <button ng-submit="nCli.addCliente(useradd)"> Guardar</button>
+                       </form> 
+                  </div>
+                    
+                     
+                     <div ng-show="panel.tab === 4"><h4>Busqueda de usuarios</h4></div>
+                    
+         </div>    
+        <script src="javascripts/angular.min.js"></script>
         <script src="javascripts/aplicacion.js"></script>
-
-</body>
+    </body>
 </html>
